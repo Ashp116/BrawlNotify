@@ -1,0 +1,13 @@
+import {SlashCommandBuilder} from 'discord.js'
+import {CommandModule} from "../InteractionRouter";
+
+const Command: CommandModule = {
+    data: new SlashCommandBuilder()
+        .setName('ping')
+        .setDescription('Replies with Pong!'),
+    async execute(interaction: { reply: (arg0: string) => any; }) {
+        await interaction.reply('Pong!');
+    },
+};
+
+export default Command;
