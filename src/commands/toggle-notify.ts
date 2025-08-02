@@ -20,7 +20,7 @@ const Command: CommandModule = {
         const toggled = interaction.options.getBoolean('enabled');
         dbHandler.setGuildConfig({
             guildId: interaction.guildId ? interaction.guildId : "",
-            notifyUpcomingMatches: toggled ?? true,
+            notifyUpcomingEvents: toggled ?? true,
         })
             .then(async () => {
                 await interaction.reply("Upcoming matches notification toggle is set to `"+ toggled +"`");

@@ -1,7 +1,7 @@
 export interface DBGuildConfig {
     guildId: string;
-    notifyUpcomingMatches?: boolean;
-    notifyUpcomingMatchesChannel?: string;
+    notifyUpcomingEvents?: boolean;
+    notifyUpcomingEventsChannel?: string;
     notifyUpcomingMatchedReminder?: number;
     notifyUpcomingMatchedChannelMessage?: string;
 }

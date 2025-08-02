@@ -49,23 +49,23 @@ export class DBHandler {
 
         if (
             !savedGuildConfig &&
-            (!guildConfig.notifyUpcomingMatchesChannel || !guildConfig.notifyUpcomingMatches)
+            (!guildConfig.notifyUpcomingEventsChannel || !guildConfig.notifyUpcomingEvents)
         )
             throw new Error("Guild is not configured! Please use `/set-notify`.");
 
         const insertData: {
             guildId: string;
-            notifyUpcomingMatches: boolean;
-            notifyUpcomingMatchesChannel: string;
+            notifyUpcomingEvents: boolean;
+            notifyUpcomingEventsChannel: string;
         } = {
             guildId: guildConfig.guildId,
-            notifyUpcomingMatches: guildConfig.notifyUpcomingMatches ?? true,
-            notifyUpcomingMatchesChannel: guildConfig.notifyUpcomingMatchesChannel ?? '',
+            notifyUpcomingEvents: guildConfig.notifyUpcomingEvents ?? true,
+            notifyUpcomingEventsChannel: guildConfig.notifyUpcomingEventsChannel ?? '',
         };
 
         const updateData = {
-            notifyUpcomingMatches: insertData.notifyUpcomingMatches,
-            notifyUpcomingMatchesChannel: insertData.notifyUpcomingMatchesChannel,
+            notifyUpcomingEvents: insertData.notifyUpcomingEvents,
+            notifyUpcomingEventsChannel: insertData.notifyUpcomingEventsChannel,
         };
 
         await this.dbClient

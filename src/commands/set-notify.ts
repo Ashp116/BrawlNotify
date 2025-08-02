@@ -13,6 +13,11 @@ const Command: CommandModule = {
                 .setName('channel')
                 .setDescription('Select a channel')
                 .setRequired(true)
+        )
+        .addStringOption(option =>
+            option
+                .setName("reminder")
+                .setDescription('Reminder time to be notified of upcoming events.')
         ),
 
 
@@ -20,8 +25,8 @@ const Command: CommandModule = {
         const channel = interaction.options.getChannel('channel');
         dbHandler.setGuildConfig({
             guildId: interaction.guildId ? interaction.guildId : "",
-            notifyUpcomingMatchesChannel: channel?.id.toString() ? channel?.id.toString() : "",
-            notifyUpcomingMatches: true
+            notifyUpcomingEventsChannel: channel?.id.toString() ? channel?.id.toString() : "",
+            notifyUpcomingEvents: true
         })
             .then(async () => {
                 await interaction.reply(`Upcoming matches notification channel is set to ${channel?.toString()}`);
