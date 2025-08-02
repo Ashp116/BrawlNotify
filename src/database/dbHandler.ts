@@ -58,7 +58,7 @@ export class DBHandler {
             guildId: guildConfig.guildId,
             notifyUpcomingEvents: guildConfig.notifyUpcomingEvents ?? true,
             notifyUpcomingEventsChannel: guildConfig.notifyUpcomingEventsChannel ?? '',
-            notifyUpcomingEventsReminder: guildConfig.notifyUpcomingEventsReminder ?? null,
+            notifyUpcomingEventsReminder: guildConfig.notifyUpcomingEventsReminder ?? 0,
             notifyUpcomingEventsChannelMessage: guildConfig.notifyUpcomingEventsChannelMessage ?? null,
         };
 

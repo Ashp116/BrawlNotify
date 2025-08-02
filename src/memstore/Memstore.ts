@@ -1,22 +1,22 @@
-export class MemStore<T> {
-    private store: Map<string, T>;
+export class MemStore<K,V> {
+    private store: Map<K,V>;
     constructor() {
-        this.store = new Map<string, T>();
+        this.store = new Map<K,V>();
     }
 
-    set(key: string, value: T): void {
+    set(key: K, value: V): void {
         this.store.set(key, value);
     }
 
-    get(key: string): T | undefined {
+    get(key: K): V | undefined {
         return this.store.get(key);
     }
 
-    has(key: string): boolean {
+    has(key: K): boolean {
         return this.store.has(key);
     }
 
-    delete(key: string): boolean  {
+    delete(key: K): boolean  {
         return this.store.delete(key);
     }
 
@@ -28,7 +28,7 @@ export class MemStore<T> {
         return this.store.size;
     }
 
-    entries(): [string, T][] {
+    entries(): [K, V][] {
         return Array.from(this.store.entries());
     }
 }

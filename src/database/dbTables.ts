@@ -6,8 +6,8 @@ export const DBTablesSQL = {
       guild_id TEXT PRIMARY KEY,
       notify_upcoming_events BOOLEAN NOT NULL DEFAULT FALSE,
       notify_upcoming_events_channel TEXT NOT NULL,
-      notify_upcoming_events_reminder INTEGER,
-      notify_upcoming_events_channel_message TEXT
+      notify_upcoming_events_reminder INTEGER NOT NULL DEFAULT 0,
+      notify_upcoming_events_channel_message TEXT 
     );
     `
 }
@@ -17,7 +17,7 @@ export const DBTables = {
         guildId: text('guild_id').primaryKey(),
         notifyUpcomingEvents: boolean('notify_upcoming_events').notNull().default(false),
         notifyUpcomingEventsChannel: text('notify_upcoming_events_channel'),
-        notifyUpcomingEventsReminder: integer('notify_upcoming_events_reminder'),
+        notifyUpcomingEventsReminder: integer('notify_upcoming_events_reminder').notNull().default(0),
         notifyUpcomingEventsChannelMessage: text('notify_upcoming_events_channel_message'),
     }),
 }
