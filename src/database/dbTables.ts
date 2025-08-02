@@ -17,7 +17,7 @@ export const DBTables = {
         guildId: text('guild_id').primaryKey(),
         notifyUpcomingEvents: boolean('notify_upcoming_events').notNull().default(false),
         notifyUpcomingEventsChannel: text('notify_upcoming_events_channel'),
-        notifyUpcomingEventsReminder: integer('notify_upcoming_matched_reminder'),
-        notifyUpcomingEventsChannelMessage: text('notify_upcoming_matched_channel_message'),
+        notifyUpcomingEventsReminder: integer('notify_upcoming_events_reminder'),
+        notifyUpcomingEventsChannelMessage: text('notify_upcoming_events_channel_message'),
     }),
 }

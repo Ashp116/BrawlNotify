@@ -50,29 +50,30 @@ export class DBHandler {
         if (
             !savedGuildConfig &&
             (!guildConfig.notifyUpcomingEventsChannel || !guildConfig.notifyUpcomingEvents)
-        )
+        ) {
             throw new Error("Guild is not configured! Please use `/set-notify`.");
+        }
 
-        const insertData: {
-            guildId: string;
-            notifyUpcomingEvents: boolean;
-            notifyUpcomingEventsChannel: string;
-        } = {
+        const insertData = {
             guildId: guildConfig.guildId,
             notifyUpcomingEvents: guildConfig.notifyUpcomingEvents ?? true,
             notifyUpcomingEventsChannel: guildConfig.notifyUpcomingEventsChannel ?? '',
+            notifyUpcomingEventsReminder: guildConfig.notifyUpcomingEventsReminder ?? null,
+            notifyUpcomingEventsChannelMessage: guildConfig.notifyUpcomingEventsChannelMessage ?? null,
         };
 
         const updateData = {
             notifyUpcomingEvents: insertData.notifyUpcomingEvents,
             notifyUpcomingEventsChannel: insertData.notifyUpcomingEventsChannel,
+            notifyUpcomingEventsReminder: insertData.notifyUpcomingEventsReminder,
+            notifyUpcomingEventsChannelMessage: insertData.notifyUpcomingEventsChannelMessage,
         };
 
         await this.dbClient
             .insert(DBTables.guildConfig)
             .values(insertData)
             .onConflictDoUpdate({
-                target: DBTables.guildConfig.guildId,
+                target: [DBTables.guildConfig.guildId],
                 set: updateData,
             });
     }
