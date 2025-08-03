@@ -1,6 +1,7 @@
 import {ChatInputCommandInteraction, Events, Guild, Interaction} from "discord.js";
 import {InteractionRouter} from "./InteractionRouter";
 import {DBHandler} from "./database/dbHandler";
+import {FetchUpcomingEvents} from "./utils/BrawlAPI";
 
 require('dotenv').config();
 const { Client, GatewayIntentBits, REST, Routes } = require('discord.js');
@@ -19,7 +20,7 @@ client.on(Events.InteractionCreate, async (interaction: Interaction) => interact
 
 client.once('ready', async () => {
     console.log(`🤖 Logged in as ${client.user.tag}`);
-    await interactionRouter.RegisterChatCommandsToGuilds(client.guilds.cache.map((g: Guild) => g.id))
+    //await interactionRouter.RegisterChatCommandsToGuilds(client.guilds.cache.map((g: Guild) => g.id))
     await DBHandler.instance.connect();
 });
 
