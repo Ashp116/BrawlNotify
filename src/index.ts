@@ -2,6 +2,9 @@ import {ChatInputCommandInteraction, Events, Guild, Interaction} from "discord.j
 import {InteractionRouter} from "./InteractionRouter";
 import {DBHandler} from "./database/dbHandler";
 import {FetchUpcomingEvents} from "./utils/BrawlAPI";
+import {MemstoreManager} from "./memstore/MemstoreManager";
+import {PriorityQueue} from "./utils/PriorityQueue";
+import {PriorityQueueGuildInfo} from "./types/PriorityQueueGuildInfo";
 
 require('dotenv').config();
 const { Client, GatewayIntentBits, REST, Routes } = require('discord.js');
@@ -22,6 +25,8 @@ client.once('ready', async () => {
     console.log(`🤖 Logged in as ${client.user.tag}`);
     //await interactionRouter.RegisterChatCommandsToGuilds(client.guilds.cache.map((g: Guild) => g.id))
     await DBHandler.instance.connect();
+    let events = MemstoreManager.getInstance().Get<string, PriorityQueue<PriorityQueueGuildInfo>>("Events")
+
 });
 
 client.login(token);
