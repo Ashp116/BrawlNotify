@@ -76,4 +76,12 @@ export class PriorityQueue<T> {
         return this.heap.length;
     }
 
+    public clear(): void {
+        this.heap = []
+    }
+
+    public toArray(): T[] {
+        return [...this.heap];
+    }
+
 }
